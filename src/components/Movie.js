@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 
 const Movie = () => {
@@ -11,27 +12,27 @@ const Movie = () => {
     setIsloading(true);
     axios
       .get("https://www.omdbapi.com/?s=man&apikey=4a3b711b")
-      .then(res => {
+      .then((res) => {
         if (res) {
           setMoviesData(res.data.Search);
           setAllData(res.data.Search);
           setIsloading(false);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("err", err);
       });
   }, []);
 
   useEffect(() => {}, [moviesData]);
   useEffect(() => {
-    const filter = allData.filter(item => {
+    const filter = allData.filter((item) => {
       return item.Title.toLowerCase().includes(search?.trim().toLowerCase());
     });
     setMoviesData(filter);
   }, [search]);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setSearch(e.target.value);
   };
   return (
@@ -61,7 +62,7 @@ const Movie = () => {
                 placeholder="Search here..."
                 className="text-primary"
                 value={search}
-                onChange={e => handleChange(e)}
+                onChange={(e) => handleChange(e)}
               />
             </div>
             <div className="data py-3">
